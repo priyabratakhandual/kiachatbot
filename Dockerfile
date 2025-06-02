@@ -23,5 +23,7 @@ RUN composer update --no-dev --optimize-autoloader
 # Set file permissions
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
 
+RUN sed -i 's|listen = .*|listen = 0.0.0.0:9000|' /usr/local/etc/php-fpm.d/www.conf
+
 EXPOSE 9000
 CMD ["php-fpm"]
