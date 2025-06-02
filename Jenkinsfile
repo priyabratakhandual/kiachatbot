@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://your-repo-url.git'  // replace this
+                git 'https://github.com/priyabratakhandual/kiachatbot.git'  // replace this
             }
         }
 
