@@ -1,0 +1,56 @@
+table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before {
+    content: ' ';
+    margin-top: -6px;
+    margin-left: -6px;
+    border: 1px solid #fff !important;
+    border-radius: 3px;
+}
+table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
+    background-color: #ffffff  !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #000000 !important;
+    border: 1px solid #000000 !important;
+    border-radius: 4px;
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 0 5px;
+    height: 30px;
+    line-height: 27px;
+}
+.select2-container--default .select2-selection--single {
+    background-color: #000 !important;
+    border: 1px solid #000 !important;
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #000 !important;
+    line-height: 28px;
+}
+.wrapper.theme-1-active .fixed-sidebar-left .side-nav > li > a, .wrapper.theme-3-active .fixed-sidebar-left .side-nav > li > a, .wrapper.theme-6-active .fixed-sidebar-left .side-nav > li > a {
+    color: #9a9a9a;
+}
+.wrapper.theme-1-active.pimary-color-pink .fixed-sidebar-left .side-nav > li > a.active, .wrapper.theme-2-active.pimary-color-pink .fixed-sidebar-left .side-nav > li > a.active, .wrapper.theme-3-active.pimary-color-pink .fixed-sidebar-left .side-nav > li > a.active, .wrapper.theme-4-active.pimary-color-pink .fixed-sidebar-left .side-nav > li > a.active, .wrapper.theme-5-active.pimary-color-pink .fixed-sidebar-left .side-nav > li > a.active, .wrapper.theme-6-active.pimary-color-pink .fixed-sidebar-left .side-nav > li > a.active {
+    color: #ffffff;
+}
+.btn:hover{
+    color:white;
+}
+.btn{
+    background:#333333 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, .dataTables_wrapper .dataTables_paginate .paginate_button:hover, .dataTables_wrapper .dataTables_paginate .paginate_button:active, .dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+    background: #000000;
+    border-color: #000000;
+    color: #fff !important;
+    box-shadow: none;
+}
+.badge-adi {
+    background-color: #000000 !important;
+    font-weight: 400;
+    padding: 5px 10px;
+    color: #ffffff;
+}

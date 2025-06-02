@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kiachatbot_app
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql
+    networks:
+      - kiachatbot
+
+  mysql:
+    image: mysql:8.0
+    container_name: kiachatbot_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kiachat
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./KiaActivity.sql:/docker-entrypoint-initdb.d/KiaActivity.sql
+    networks:
+      - kiachatbot
+
+  nginx:
+    image: nginx:alpine
+    container_name: kiachatbot_nginx
+    ports:
+      - "9000:80"
+    volumes:
+      - .:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - kiachatbot
+
+volumes:
+  db_data:
+
+networks:
+  kiachatbot:
+    driver: bridge
