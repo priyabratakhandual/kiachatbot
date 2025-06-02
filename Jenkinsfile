@@ -19,7 +19,6 @@ pipeline {
             steps {
                 sh 'docker exec kiachatbot_app php artisan config:clear'
                 sh 'docker exec kiachatbot_app php artisan config:cache'
-                sh 'docker exec kiachatbot_app php artisan route:cache'
             }
         }
     }
