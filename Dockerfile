@@ -14,16 +14,24 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # Set working directory
 WORKDIR /var/www
 
-# Copy your app code
+# ✅ Copy app code
 COPY . .
 
-# Install PHP dependencies
-RUN composer update --no-dev --optimize-autoloader
+# ✅ Copy .env if not mounting via volume (optional)
+# COPY .env /var/www/.env
 
-# Set file permissions
+# ✅ Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader || true
+
+# ✅ Generate application key if .env is present
+RUN if [ -f ".env" ]; then php artisan key:generate; fi
+
+# ✅ Set file permissions
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
 
+# ✅ Expose PHP-FPM port and configure listen address
 RUN sed -i 's|listen = .*|listen = 0.0.0.0:9000|' /usr/local/etc/php-fpm.d/www.conf
 
 EXPOSE 9000
+
 CMD ["php-fpm"]
