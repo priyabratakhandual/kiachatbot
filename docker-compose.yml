@@ -7,8 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: kiachatbot_app
     volumes:
-      - ./.env:/var/www/.env                   # ✅ Ensure .env is available
-      - ./vendor:/var/www/vendor               # ✅ Ensure composer dependencies persist
+      - ./.env:/var/www/.env                    # ✅ Required for artisan & Laravel boot
     depends_on:
       - mysql
     networks:

@@ -7,29 +7,29 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql zip mbstring gd
 
-# ✅ Install Composer
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
 # Set working directory
 WORKDIR /var/www
 
-# ✅ Copy app code
+# Copy app code
 COPY . .
 
-# ✅ Copy .env if not mounting via volume (optional)
+# Copy .env file if not mounted externally
 # COPY .env /var/www/.env
 
-# ✅ Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader || true
+# Install PHP dependencies (fail build if vendor not created)
+RUN composer install --no-dev --optimize-autoloader
 
-# ✅ Generate application key if .env is present
-RUN if [ -f ".env" ]; then php artisan key:generate; fi
+# Generate app key if .env exists
+RUN test -f .env && php artisan key:generate || echo ".env not found, skipping key generation"
 
-# ✅ Set file permissions
+# Set file permissions
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
 
-# ✅ Expose PHP-FPM port and configure listen address
+# Allow php-fpm to listen on external port
 RUN sed -i 's|listen = .*|listen = 0.0.0.0:9000|' /usr/local/etc/php-fpm.d/www.conf
 
 EXPOSE 9000
