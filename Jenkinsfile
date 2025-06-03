@@ -24,7 +24,7 @@ pipeline {
         stage('Composer Install') {
             steps {
                 // Ensure dependencies are installed inside container
-                sh "docker exec ${APP_CONTAINER} composer install ${COMPOSER_FLAGS} || true"
+                sh "docker exec ${APP_CONTAINER} composer update ${COMPOSER_FLAGS} || true"
             }
         }
 

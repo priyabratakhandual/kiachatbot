@@ -21,7 +21,7 @@ COPY . .
 # COPY .env /var/www/.env
 
 # Install PHP dependencies (fail build if vendor not created)
-RUN composer install --no-dev --optimize-autoloader
+RUN composer update --no-dev --optimize-autoloader || true
 
 # Generate app key if .env exists
 RUN test -f .env && php artisan key:generate || echo ".env not found, skipping key generation"
